@@ -51,6 +51,9 @@
                         <a class="nav-link" href="#content" data-i18n="nav-content">配信内容</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#schedule" data-i18n="nav-schedule">配信スケジュール</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#trigger" data-i18n="nav-trigger">きっかけ</a>
                     </li>
                     <li class="nav-item">
@@ -312,7 +315,34 @@
             </div>
         </section>
 
-        <!-- Trigger Section -->
+        <!-- Stream Schedule Section -->
+        <section id="schedule" class="mb-5 py-3">
+            <h2 class="border-bottom pb-2" data-i18n="title-schedule">配信スケジュール</h2>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card border-warning mb-3">
+                        <div class="card-header bg-warning text-dark" data-i18n="schedule-header">配信時間</div>
+                        <div class="card-body text-center">
+                            <div data-lang="ja" class="active">
+                                <p class="lead">アメリカ、ヨーロッパの時差を考慮して、日本時間の朝6時00分～朝8時00分の間で配信しています。</p>
+                            </div>
+                            <div data-lang="en">
+                                <p class="lead">Considering the time difference between America and Europe, I stream between 6:00 AM and 8:00 AM JST.</p>
+                            </div>
+                            <div data-lang="ko">
+                                <p class="lead">미국, 유럽과의 시차를 고려하여 일본 시간으로 오전 6시부터 오전 8시 사이에 방송하고 있습니다.</p>
+                            </div>
+                            <div data-lang="zh">
+                                <p class="lead">考虑到美国和欧洲的时差，我在日本时间早上 6:00 到 8:00 之间进行直播。</p>
+                            </div>
+                            <div data-lang="ru">
+                                <p class="lead">С учетом разницы во времени с Америкой и Европой, я провожу стримы с 6:00 до 8:00 по японскому времени (JST).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section id="trigger" class="mb-5 py-3">
             <h2 class="border-bottom pb-2" data-i18n="title-trigger">配信を始めたきっかけ</h2>
             <div class="row mt-4">
@@ -458,12 +488,15 @@
             'ja': {
                 'nav-profile': 'プロフィール',
                 'nav-content': '配信内容',
+                'nav-schedule': '配信スケジュール',
                 'nav-trigger': 'きっかけ',
                 'nav-proscons': '配信スタイル',
                 'hero-title': 'イッシーの配信へようこそ',
                 'hero-lead': 'Twitchで囲碁を通じて、国境を越えた雑談配信をしています。',
                 'title-profile': 'プロフィール',
                 'title-content': 'Twitchでの配信内容',
+                'title-schedule': '配信スケジュール',
+                'schedule-header': '配信時間',
                 'content-live-title': 'PlayGo,ggをプレイ',
                 'content-review-title': '雑談',
                 'content-app-title': '囲碁シルをプレイ',
@@ -485,6 +518,7 @@
             'en': {
                 'nav-profile': 'Profile',
                 'nav-content': 'Stream Content',
+                'nav-schedule': 'Stream Schedule',
                 'nav-trigger': 'Trigger',
                 'nav-proscons': 'Stream Style',
                 'nav-audience': 'Audience',
@@ -493,6 +527,8 @@
                 'hero-lead': 'Hosting cross-border chatting streams through Go on Twitch!',
                 'title-profile': 'Profile',
                 'title-content': 'Stream Content on Twitch',
+                'title-schedule': 'Stream Schedule',
+                'schedule-header': 'Stream Time',
                 'content-live-title': 'Play on PlayGo,gg',
                 'content-review-title': 'Chatting',
                 'content-app-title': 'Play Igo-Sil',
@@ -514,6 +550,7 @@
             'ko': {
                 'nav-profile': '프로필',
                 'nav-content': '방송 내용',
+                'nav-schedule': '방송 일정',
                 'nav-trigger': '계기',
                 'nav-proscons': '방송 스타일',
                 'nav-contact': '문의',
@@ -521,6 +558,8 @@
                 'hero-lead': 'Twitch에서 바둑을 통해 국경을 초월한 수다 방송을 하고 있습니다!',
                 'title-profile': '프로필',
                 'title-content': 'Twitch 방송 내용',
+                'title-schedule': '방송 일정',
+                'schedule-header': '방송 시간',
                 'content-live-title': 'PlayGo,gg에서 플레이',
                 'content-review-title': '잡담',
                 'content-app-title': '이고실(Igo-Sil) 플레이',
@@ -542,6 +581,7 @@
             'zh': {
                 'nav-profile': '个人资料',
                 'nav-content': '直播内容',
+                'nav-schedule': '直播日程',
                 'nav-trigger': '起因',
                 'nav-proscons': '直播风格',
                 'nav-contact': '联系我们',
@@ -549,6 +589,8 @@
                 'hero-lead': '在 Twitch 上通过围棋进行跨国界的杂谈直播！',
                 'title-profile': '个人资料',
                 'title-content': 'Twitch 直播内容',
+                'title-schedule': '直播日程',
+                'schedule-header': '直播时间',
                 'content-live-title': '在 PlayGo,gg 上对弈',
                 'content-review-title': '杂谈',
                 'content-app-title': '游玩 Igo-Sil',
@@ -570,6 +612,7 @@
             'ru': {
                 'nav-profile': 'Профиль',
                 'nav-content': 'Контент стрима',
+                'nav-schedule': 'Расписание стримов',
                 'nav-trigger': 'Причина',
                 'nav-proscons': 'Стиль стрима',
                 'nav-contact': 'Контакт',
@@ -577,6 +620,8 @@
                 'hero-lead': 'Провожу стримы на Twitch, общаясь через игру в Го!',
                 'title-profile': 'Профиль',
                 'title-content': 'Контент стрима на Twitch',
+                'title-schedule': 'Расписание стримов',
+                'schedule-header': 'Время стримов',
                 'content-live-title': 'Игра на PlayGo,gg',
                 'content-review-title': 'Общение',
                 'content-app-title': 'Игра в Igo-Sil',
