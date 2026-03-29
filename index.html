@@ -8,12 +8,22 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .hero-section {
-            background-color: #f8f9fa;
             padding: 4rem 0;
             text-align: center;
         }
+        /* ライトモード時の背景色 */
+        [data-bs-theme="light"] .hero-section {
+            background-color: #f8f9fa;
+        }
+        /* ダークモード時の背景色 */
+        [data-bs-theme="dark"] .hero-section {
+            background-color: #212529;
+        }
         .lang-switch {
             max-width: 150px;
+        }
+        .theme-switch {
+            cursor: pointer;
         }
         [data-lang] {
             display: none;
@@ -47,10 +57,17 @@
                         <a class="nav-link" href="#contact" data-i18n="nav-contact">問い合わせ</a>
                     </li>
                 </ul>
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="form-check form-switch me-2">
+                        <input class="form-check-input theme-switch" type="checkbox" id="themeSwitch">
+                        <label class="form-check-label text-white small" for="themeSwitch" id="themeLabel">Dark</label>
+                    </div>
                     <select class="form-select form-select-sm lang-switch" id="langSelect">
                         <option value="ja" selected>日本語</option>
                         <option value="en">English</option>
+                        <option value="ko">한국어</option>
+                        <option value="zh">中文</option>
+                        <option value="ru">Русский</option>
                     </select>
                 </div>
             </div>
@@ -219,7 +236,9 @@
                 'contact-name': 'お名前',
                 'contact-email': 'メールアドレス',
                 'contact-message': 'お問い合わせ内容',
-                'contact-submit': '送信'
+                'contact-submit': '送信',
+                'theme-dark': 'ダーク',
+                'theme-light': 'ライト'
             },
             'en': {
                 'nav-profile': 'Profile',
@@ -239,18 +258,107 @@
                 'contact-name': 'Name',
                 'contact-email': 'Email address',
                 'contact-message': 'Message',
-                'contact-submit': 'Submit'
+                'contact-submit': 'Submit',
+                'theme-dark': 'Dark',
+                'theme-light': 'Light'
+            },
+            'ko': {
+                'nav-profile': '프로필',
+                'nav-content': '방송 내용',
+                'nav-proscons': '장점 및 단점',
+                'nav-contact': '문의',
+                'hero-title': 'favopg의 방송에 오신 것을 환영합니다',
+                'hero-lead': 'Twitch에서 바둑을 즐겁게 두고 있습니다!',
+                'title-profile': '프로필',
+                'title-content': 'Twitch 방송 내용',
+                'content-live-title': '실전 대국',
+                'content-review-title': '검토 및 연구',
+                'title-proscons': '방송의 장점과 단점',
+                'pros-header': '장점',
+                'cons-header': '단점',
+                'title-contact': '문의',
+                'contact-name': '이름',
+                'contact-email': '이메일 주소',
+                'contact-message': '문의 내용',
+                'contact-submit': '전송',
+                'theme-dark': '다크',
+                'theme-light': '라이트'
+            },
+            'zh': {
+                'nav-profile': '个人资料',
+                'nav-content': '直播内容',
+                'nav-proscons': '优点与缺点',
+                'nav-contact': '联系我们',
+                'hero-title': '欢迎来到 favopg 的直播间',
+                'hero-lead': '在 Twitch 上愉快地下围棋！',
+                'title-profile': '个人资料',
+                'title-content': 'Twitch 直播内容',
+                'content-live-title': '实战对局',
+                'content-review-title': '复盘与研究',
+                'title-proscons': '直播的优点和缺点',
+                'pros-header': '优点',
+                'cons-header': '缺点',
+                'title-contact': '联系我们',
+                'contact-name': '姓名',
+                'contact-email': '电子邮件地址',
+                'contact-message': '咨询内容',
+                'contact-submit': '发送',
+                'theme-dark': '深色',
+                'theme-light': '浅色'
+            },
+            'ru': {
+                'nav-profile': 'Профиль',
+                'nav-content': 'Контент стрима',
+                'nav-proscons': 'Плюсы и минусы',
+                'nav-contact': 'Контакт',
+                'hero-title': 'Добро пожаловать на стрим favopg',
+                'hero-lead': 'Играю в Го на Twitch с удовольствием!',
+                'title-profile': 'Профиль',
+                'title-content': 'Контент стрима на Twitch',
+                'content-live-title': 'Живые партии',
+                'content-review-title': 'Разбор и изучение',
+                'title-proscons': 'Плюсы и минусы стрима',
+                'pros-header': 'Плюсы',
+                'cons-header': 'Минусы',
+                'title-contact': 'Контакт',
+                'contact-name': 'Имя',
+                'contact-email': 'Адрес эл. почты',
+                'contact-message': 'Сообщение',
+                'contact-submit': 'Отправить',
+                'theme-dark': 'Темная',
+                'theme-light': 'Светлая'
             }
         };
 
         const langSelect = document.getElementById('langSelect');
+        const themeSwitch = document.getElementById('themeSwitch');
+        const themeLabel = document.getElementById('themeLabel');
         const heroTitle = document.getElementById('hero-title');
         const heroLead = document.getElementById('hero-lead');
+
+        // Initial setup
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-bs-theme', savedTheme);
+        themeSwitch.checked = (savedTheme === 'dark');
+        updateThemeLabel();
 
         langSelect.addEventListener('change', (e) => {
             const lang = e.target.value;
             switchLanguage(lang);
         });
+
+        themeSwitch.addEventListener('change', () => {
+            const theme = themeSwitch.checked ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-bs-theme', theme);
+            localStorage.setItem('theme', theme);
+            updateThemeLabel();
+        });
+
+        function updateThemeLabel() {
+            const lang = langSelect.value;
+            const themeKey = themeSwitch.checked ? 'theme-dark' : 'theme-light';
+            themeLabel.textContent = translations[lang][themeKey];
+        }
 
         function switchLanguage(lang) {
             // Update simple text elements
@@ -273,6 +381,9 @@
             // Update specific IDs
             heroTitle.textContent = translations[lang]['hero-title'];
             heroLead.textContent = translations[lang]['hero-lead'];
+
+            // Update Theme Label
+            updateThemeLabel();
 
             // Update HTML lang attribute
             document.documentElement.lang = lang;
